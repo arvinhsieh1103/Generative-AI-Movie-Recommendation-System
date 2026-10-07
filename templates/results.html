@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>搜尋結果</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .top-bar {
+      background: #e0e0e0;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .top-bar a {
+      text-decoration: none;
+      margin-left: 15px;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .top-bar a:hover {
+      color: #007BFF;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .movie {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .movie img {
+      width: 120px;
+      height: auto;
+      margin-right: 20px;
+      border-radius: 6px;
+    }
+
+    .movie-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .movie-title a {
+      text-decoration: none;
+      color: #333;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .movie-title a:hover {
+      color: #007BFF;
+    }
+
+    .no-result {
+      text-align: center;
+      font-size: 18px;
+      color: #777;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div>
+      👤 Welcome, <strong>{{ username }}</strong>
+    </div>
+    <div>
+      <a href="/search">🔍 返回搜尋</a>
+      <a href="/assistant">🤖 電影推薦助手阿蓋</a>
+      <a href="/favorites">❤️ 我的最愛</a>
+      <a href="/rankings">📊 排行榜</a>
+      <a href="/logout">🚪 登出</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>搜尋結果：<em>{{ keyword }}</em></h2>
+
+    {% if results %}
+      {% for movie in results %}
+        <div class="movie">
+          <a href="/movie/{{ movie.MovieID }}">
+            <img src="{{ movie.image }}" alt="{{ movie.Title }} poster" />
+          </a>
+          <div class="movie-info">
+            <div class="movie-title">
+              <a href="/movie/{{ movie.MovieID }}">{{ movie.Title }}</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p class="no-result">沒有找到任何符合 "<strong>{{ keyword }}</strong>" 的電影。</p>
+    {% endif %}
+  </div>
+</body>
+</html>
