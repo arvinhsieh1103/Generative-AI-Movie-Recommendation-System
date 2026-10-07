@@ -1,0 +1,7 @@
+Flask
+pymongo[srv]
+pandas
+numpy
+scikit-learn
+google-genai
+python-dotenv

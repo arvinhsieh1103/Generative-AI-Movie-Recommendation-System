@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+
+*.log
+.ipynb_checkpoints/
+
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.pkl
+*.pickle
